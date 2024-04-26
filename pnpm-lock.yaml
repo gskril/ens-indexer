@@ -8,22 +8,25 @@ dependencies:
   '@ponder/core':
     specifier: ^0.4.4
     version: 0.4.4(@types/node@20.12.7)(typescript@5.4.5)(viem@1.21.4)
+  '@ponder/utils':
+    specifier: ^0.1.2
+    version: 0.1.2(typescript@5.4.5)(viem@1.21.4)
   viem:
     specifier: ^1.19.3
     version: 1.21.4(typescript@5.4.5)
 
 devDependencies:
   '@types/node':
-    specifier: ^20.9.0
+    specifier: ^20.12.7
     version: 20.12.7
   eslint:
-    specifier: ^8.53.0
+    specifier: ^8.57.0
     version: 8.57.0
   eslint-config-ponder:
     specifier: ^0.4.4
     version: 0.4.4(@typescript-eslint/eslint-plugin@6.21.0)(@typescript-eslint/parser@6.21.0)(eslint@8.57.0)
   typescript:
-    specifier: ^5.2.2
+    specifier: ^5.4.5
     version: 5.4.5
 
 packages:

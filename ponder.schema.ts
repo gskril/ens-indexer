@@ -1,8 +1,10 @@
-import { createSchema } from "@ponder/core";
+import { createSchema } from '@ponder/core'
 
 export default createSchema((p) => ({
-  Example: p.createTable({
-    id: p.string(),
-    name: p.string().optional(),
+  Name: p.createTable({
+    id: p.hex(), // namehash
+    label: p.hex().optional(), // labelhash
+    owner: p.hex().optional(),
+    resolver: p.hex().optional(),
   }),
-}));
+}))
