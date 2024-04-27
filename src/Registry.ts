@@ -2,7 +2,7 @@ import { ponder } from '@/generated'
 import { getNodeFromParentNodeAndLabelhash } from './utils'
 
 // Logged when the owner of a node assigns a new owner to a subnode.
-// This is the first record of a 3LD+ onchain, and the first usable record of a 2LD onchain.
+// This is the first record of a 3LD+ onchain.
 ponder.on('Registry:NewOwner', async ({ event, context }) => {
   const { Name } = context.db
   const { node: parentNode, label: labelhash, owner } = event.args

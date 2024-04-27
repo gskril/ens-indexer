@@ -8,6 +8,7 @@ export default createSchema((p) => ({
     name: p.string().optional(),
     owner: p.hex().optional(),
     wrappedOwner: p.hex().optional(),
+    fuses: p.int().optional(),
     resolver: p.hex().optional(),
     expiresAt: p.bigint().optional(),
     createdAt: p.bigint(),

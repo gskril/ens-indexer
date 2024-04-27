@@ -31,6 +31,7 @@ ponder.on('BaseRegistrar:NameRegistered', async ({ event, context }) => {
   const labelhash = toHex(tokenId)
   const node = getEth2LdNodeFromLabelhash(labelhash)
 
+  // We don't need to update `owner` here because it's already handled in `Transfer`
   await Name.update({
     id: node,
     data: {
