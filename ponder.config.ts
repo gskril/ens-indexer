@@ -20,6 +20,7 @@ export default createConfig({
         http('https://eth.drpc.org'),
         http('https://gateway.tenderly.co/public/mainnet'),
       ]),
+      maxRequestsPerSecond: 250,
     },
   },
   contracts: {
