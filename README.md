@@ -1,8 +1,6 @@
 # ENS Indexer
 
-A simpler, less complete version of the [ENS Subgraph](https://thegraph.com/hosted-service/subgraph/ensdomains/ens).
-
-Built with [Ponder](https://ponder.sh/).
+A simpler, less complete version of the [ENS Subgraph](https://thegraph.com/hosted-service/subgraph/ensdomains/ens). Built with [Ponder](https://ponder.sh/).
 
 Indexes the following contracts:
 
@@ -14,7 +12,34 @@ Indexes the following contracts:
 | ETH Registrar Controller        | 0x253553366Da8546fC250F225fe3d25d0C782303b |
 | Name Wrapper                    | 0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401 |
 
-## Notes:
+## Example queries
+
+Get all names owned by an address:
+
+```graphql
+{
+  names(
+    where: {
+      OR: [
+        { owner: "0x179A862703a4adfb29896552DF9e307980D19285" }
+        { wrappedOwner: "0x179A862703a4adfb29896552DF9e307980D19285" }
+      ]
+    }
+  ) {
+    items {
+      id
+      name
+      resolver
+      createdAt
+      expiresAt
+    }
+  }
+}
+```
+
+You can also access the database directly for more complex SQL queries. [Learn more here](https://ponder.sh/docs/query/direct-sql).
+
+## Notes to self while building
 
 - The first record of a .eth 2LD onchain is a `Transfer` event from the Base Registrar
 
