@@ -1,5 +1,5 @@
 {
-  "name": "ens-ponder-subgraph",
+  "name": "ens-indexer",
   "version": "0.0.1",
   "private": true,
   "type": "module",
