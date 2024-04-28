@@ -37,6 +37,24 @@ Get all names owned by an address:
 }
 ```
 
+Get all subnames of a given node:
+
+```graphql
+{
+  names(
+    where: {
+      parentId: "0x4e34d3a81dc3a20f71bbdf2160492ddaa17ee7e5523757d47153379c13cb46df" # namehash('ens.eth')
+    }
+  ) {
+    items {
+      id
+      name
+      createdAt
+    }
+  }
+}
+```
+
 You can also access the database directly for more complex SQL queries. [Learn more here](https://ponder.sh/docs/query/direct-sql).
 
 ## Notes to self while building

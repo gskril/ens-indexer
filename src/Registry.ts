@@ -12,6 +12,7 @@ ponder.on('Registry:NewOwner', async ({ event, context }) => {
   await Name.upsert({
     id: node,
     create: {
+      parentId: parentNode,
       labelhash,
       owner,
       createdAt: event.block.timestamp,
