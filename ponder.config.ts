@@ -13,14 +13,12 @@ export default createConfig({
     mainnet: {
       chainId: 1,
       transport: loadBalance([
-        http('https://eth.llamarpc.com'),
-        http('https://ethereum-rpc.publicnode.com	'),
+        http('https://ethereum-rpc.publicnode.com'),
         http('https://eth-pokt.nodies.app'),
         http('https://rpc.mevblocker.io'),
         http('https://eth.drpc.org'),
-        http('https://gateway.tenderly.co/public/mainnet'),
       ]),
-      maxRequestsPerSecond: 250,
+      maxRequestsPerSecond: 500,
     },
   },
   contracts: {
