@@ -11,14 +11,16 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@ponder/core": "^0.4.13",
-    "@ponder/utils": "^0.1.2",
-    "viem": "^1.19.3"
+    "@ponder/core": "^0.4.35",
+    "@ponder/utils": "^0.1.6",
+    "viem": "^1.21.4"
   },
   "devDependencies": {
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.14.2",
+    "@typescript-eslint/eslint-plugin": "^6.3.0",
+    "@typescript-eslint/parser": "^6.3.0",
     "eslint": "^8.57.0",
-    "eslint-config-ponder": "^0.4.4",
+    "eslint-config-ponder": "^0.4.35",
     "typescript": "^5.4.5"
   },
   "engines": {
