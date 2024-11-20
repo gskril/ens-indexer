@@ -1,13 +1,13 @@
 // This file enables type checking and editor autocomplete for this Ponder project.
 // After upgrading, you may find that changes have been made to this file.
 // If this happens, please commit the changes. Do not manually edit this file.
-// See https://ponder.sh/docs/guides/typescript for more information.
+// See https://ponder.sh/docs/getting-started/installation#typescript for more information.
 
 declare module "@/generated" {
   import type { Virtual } from "@ponder/core";
 
   type config = typeof import("./ponder.config.ts").default;
-  type schema = typeof import("./ponder.schema.ts").default;
+  type schema = typeof import("./ponder.schema.ts");
 
   export const ponder: Virtual.Registry<config, schema>;
 
@@ -21,7 +21,7 @@ declare module "@/generated" {
     schema,
     name
   >;
+  export type ApiContext = Virtual.ApiContext<schema>;
   export type IndexingFunctionArgs<name extends EventNames = EventNames> =
     Virtual.IndexingFunctionArgs<config, schema, name>;
-  export type Schema = Virtual.Schema<schema>;
 }

@@ -1,22 +1,21 @@
 import { ponder } from '@/generated'
 import { namehash } from 'viem'
 
-// prettier-ignore
-ponder.on('RegistrarControllerV1:NameRegistered', async ({ event, context }) => {
-    const { Name } = context.db
+import { name } from '../ponder.schema'
+
+ponder.on(
+  'RegistrarControllerV1:NameRegistered',
+  async ({ event, context }) => {
     const { name: label } = event.args
 
-    const name = `${label}.eth`
-    const node = namehash(name)
+    const nameWithTld = `${label}.eth`
+    const node = namehash(nameWithTld)
 
     // We can ignore the `owner` and `expires` fields since they are already tracked by the BaseRegistrar
-    await Name.update({
-      id: node,
-      data: {
-        name,
-        label,
-      },
-    })
+    await context.db.update(name, { id: node }).set(() => ({
+      name: nameWithTld,
+      label,
+    }))
   }
 )
 

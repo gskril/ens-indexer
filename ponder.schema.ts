@@ -1,18 +1,22 @@
-import { createSchema } from '@ponder/core'
+import { onchainTable, relations } from '@ponder/core'
 
-export default createSchema((p) => ({
-  Name: p.createTable({
-    id: p.hex(), // namehash
-    parentId: p.hex().references('Name.id').optional(),
-    parent: p.one('parentId'),
-    labelhash: p.hex().optional(),
-    label: p.string().optional(),
-    name: p.string().optional(),
-    owner: p.hex().optional(),
-    wrappedOwner: p.hex().optional(),
-    fuses: p.int().optional(),
-    resolver: p.hex().optional(),
-    expiresAt: p.bigint().optional(),
-    createdAt: p.bigint(),
+export const name = onchainTable('name', (t) => ({
+  id: t.hex().primaryKey(), // namehash
+  parentId: t.hex(),
+  labelhash: t.hex(),
+  label: t.text(),
+  name: t.text(),
+  owner: t.hex(),
+  wrappedOwner: t.hex(),
+  fuses: t.integer(),
+  resolver: t.hex(),
+  expiresAt: t.bigint(),
+  createdAt: t.bigint().notNull(),
+}))
+
+export const nameRelations = relations(name, ({ one }) => ({
+  parent: one(name, {
+    fields: [name.id],
+    references: [name.parentId],
   }),
 }))

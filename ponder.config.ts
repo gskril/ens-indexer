@@ -13,12 +13,12 @@ export default createConfig({
     mainnet: {
       chainId: 1,
       transport: loadBalance([
-        http('https://ethereum-rpc.publicnode.com'),
-        http('https://eth-pokt.nodies.app'),
-        http('https://rpc.mevblocker.io'),
-        http('https://eth.drpc.org'),
+        http(process.env.PONDER_RPC_URL_1),
+        http(process.env.PONDER_RPC_URL_2),
+        http(process.env.PONDER_RPC_URL_3),
       ]),
-      maxRequestsPerSecond: 500,
+      maxRequestsPerSecond: 150,
+      pollingInterval: 10_000,
     },
   },
   contracts: {
