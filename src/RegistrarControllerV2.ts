@@ -1,4 +1,4 @@
-import { ponder } from '@/generated'
+import { ponder } from 'ponder:registry'
 import { keccak256, namehash, toHex } from 'viem'
 
 import { name } from '../ponder.schema'

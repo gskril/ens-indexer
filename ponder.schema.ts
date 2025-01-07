@@ -1,4 +1,4 @@
-import { onchainTable, relations } from '@ponder/core'
+import { onchainTable, relations } from 'ponder'
 
 export const name = onchainTable('name', (t) => ({
   id: t.hex().primaryKey(), // namehash

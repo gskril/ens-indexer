@@ -1,4 +1,4 @@
-import { ponder } from '@/generated'
+import { ponder } from 'ponder:registry'
 import { labelhash, toBytes, toHex } from 'viem'
 
 import { name } from '../ponder.schema'

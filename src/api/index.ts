@@ -1,6 +1,6 @@
-import { graphql } from '@ponder/core'
+import { graphql } from 'ponder'
 import { Hex } from 'viem'
-import { ponder } from '@/generated'
+import { ponder } from 'ponder:registry'
 
 ponder.use('/', graphql())
 

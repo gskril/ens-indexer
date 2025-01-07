@@ -1,4 +1,4 @@
-import { ponder } from '@/generated'
+import { ponder } from 'ponder:registry'
 
 import { getNodeFromParentNodeAndLabelhash } from './utils'
 import { name } from '../ponder.schema'

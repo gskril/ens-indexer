@@ -1,4 +1,4 @@
-import { ponder } from '@/generated'
+import { ponder } from 'ponder:registry'
 import { toHex } from 'viem'
 
 import { getEth2LdNodeFromLabelhash } from './utils'
