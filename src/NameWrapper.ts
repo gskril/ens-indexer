@@ -1,7 +1,8 @@
 import { ponder } from '@/generated'
-import { labelhash, toHex } from 'viem'
+import { labelhash, toBytes, toHex } from 'viem'
 
 import { name } from '../ponder.schema'
+import { bytesToPacket } from './utils'
 
 // Fires before `NameWrapped`
 ponder.on('NameWrapper:TransferSingle', async ({ event, context }) => {
@@ -27,12 +28,7 @@ ponder.on('NameWrapper:TransferBatch', async ({ event, context }) => {
 ponder.on('NameWrapper:NameWrapped', async ({ event, context }) => {
   const { node, name: encodedName, owner, fuses, expiry } = event.args
 
-  const decodedName = Buffer.from(encodedName.slice(2), 'hex')
-    .toString('utf8')
-    .replace(/[\x01-\x20]/g, '.')
-    .replace(/\0/g, '')
-    .slice(1)
-
+  const decodedName = bytesToPacket(toBytes(encodedName))
   const label = decodedName.split('.')[0]!
 
   await context.db.update(name, { id: node }).set(() => ({
