@@ -1,17 +1,13 @@
 import { ponder } from 'ponder:registry'
-import { keccak256, namehash, toHex } from 'viem'
 
 import { name } from '../ponder.schema'
-import { getNodeFromParentNodeAndLabelhash } from './utils'
+import { getEth2LdNodeFromLabelhash } from './utils'
 
 ponder.on(
   'RegistrarControllerV2:NameRegistered',
   async ({ event, context }) => {
-    const { name: label } = event.args
-
-    const parentNode = namehash('eth')
-    const labelhash = keccak256(toHex(label))
-    const node = getNodeFromParentNodeAndLabelhash(parentNode, labelhash)
+    const { name: label, label: labelhash } = event.args
+    const node = getEth2LdNodeFromLabelhash(labelhash)
 
     // We can ignore the `owner` and `expires` fields since they are already tracked by the BaseRegistrar
     await context.db
