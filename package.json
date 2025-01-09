@@ -13,7 +13,7 @@
   "dependencies": {
     "@ponder/utils": "^0.2.2",
     "hono": "^4.6.11",
-    "ponder": "^0.8.19",
+    "ponder": "^0.8.21",
     "viem": "^2.21.48"
   },
   "devDependencies": {
