@@ -16,6 +16,13 @@ ponder.on(
   }
 )
 
-ponder.on('RegistrarControllerV2:NameRenewed', async () => {
-  // We don't need to do anything here since expiration is already tracked by the BaseRegistrar
+// We don't need to do anything here regarding expiration since it's already tracked by the BaseRegistrar
+// But we can use this to pickup labels that were originally private registered prior to the permanent registrar!
+ponder.on('RegistrarControllerV2:NameRenewed', async ({ event, context }) => {
+  const { name: label, label: labelhash } = event.args
+  const node = getEth2LdNodeFromLabelhash(labelhash)
+
+  await context.db
+    .update(name, { id: node })
+    .set(() => ({ name: `${label}.eth`, label }))
 })
