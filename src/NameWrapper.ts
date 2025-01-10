@@ -48,7 +48,7 @@ ponder.on('NameWrapper:NameUnwrapped', async ({ event, context }) => {
   // We can ignore `owner` becuase it will be taken care of by the Registry
   await context.db
     .update(name, { id: node })
-    .set(() => ({ wrappedOwner: undefined }))
+    .set(() => ({ wrappedOwner: null }))
 })
 
 ponder.on('NameWrapper:ExpiryExtended', async ({ event, context }) => {
