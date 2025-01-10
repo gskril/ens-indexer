@@ -7,20 +7,20 @@ import { bytesToPacket } from './utils'
 // Fires before `NameWrapped`
 ponder.on('NameWrapper:TransferSingle', async ({ event, context }) => {
   const { to, id } = event.args
+  const node = toHex(id, { size: 32 })
 
-  await context.db
-    .update(name, { id: toHex(id) })
-    .set(() => ({ wrappedOwner: to }))
+  await context.db.update(name, { id: node }).set(() => ({ wrappedOwner: to }))
 })
 
 ponder.on('NameWrapper:TransferBatch', async ({ event, context }) => {
   const { to, ids } = event.args
+  const nodes = ids.map((id) => toHex(id, { size: 32 }))
 
   // TODO: Optimize this
   // https://orm.drizzle.team/docs/guides/update-many-with-different-value
-  for (const id of ids) {
+  for (const node of nodes) {
     await context.db
-      .update(name, { id: toHex(id) })
+      .update(name, { id: node })
       .set(() => ({ wrappedOwner: to }))
   }
 })

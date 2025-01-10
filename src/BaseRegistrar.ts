@@ -8,7 +8,7 @@ import { name } from '../ponder.schema'
 ponder.on('BaseRegistrar:Transfer', async ({ event, context }) => {
   const { to, tokenId } = event.args
 
-  const labelhash = toHex(tokenId)
+  const labelhash = toHex(tokenId, { size: 32 })
   const node = getEth2LdNodeFromLabelhash(labelhash)
 
   await context.db
@@ -28,7 +28,7 @@ ponder.on('BaseRegistrar:Transfer', async ({ event, context }) => {
 ponder.on('BaseRegistrar:NameRegistered', async ({ event, context }) => {
   const { id: tokenId, expires } = event.args
 
-  const labelhash = toHex(tokenId)
+  const labelhash = toHex(tokenId, { size: 32 })
   const node = getEth2LdNodeFromLabelhash(labelhash)
 
   // We don't need to update `owner` here because it's already handled in `Transfer`
@@ -40,7 +40,7 @@ ponder.on('BaseRegistrar:NameRegistered', async ({ event, context }) => {
 ponder.on('BaseRegistrar:NameRenewed', async ({ event, context }) => {
   const { id: tokenId, expires } = event.args
 
-  const labelhash = toHex(tokenId)
+  const labelhash = toHex(tokenId, { size: 32 })
   const node = getEth2LdNodeFromLabelhash(labelhash)
 
   await context.db
