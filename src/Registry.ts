@@ -20,6 +20,7 @@ ponder.on('Registry:NewOwner', async ({ event, context }) => {
       createdAt: event.block.timestamp,
     })
     .onConflictDoUpdate(() => ({
+      parentId: parentNode,
       labelhash,
       owner,
     }))
