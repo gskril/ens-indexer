@@ -1,4 +1,4 @@
-import { graphql } from 'ponder'
+import { graphql, replaceBigInts } from 'ponder'
 import { Hex } from 'viem'
 import { ponder } from 'ponder:registry'
 
@@ -15,7 +15,7 @@ ponder.get('/name/:name', async (c) => {
     return c.json({ error: 'Name not found' }, 404)
   }
 
-  return c.json(res)
+  return c.json(replaceBigInts(res, (v) => String(v)))
 })
 
 ponder.get('/node/:node', async (c) => {
@@ -29,5 +29,5 @@ ponder.get('/node/:node', async (c) => {
     return c.json({ error: 'Name not found' }, 404)
   }
 
-  return c.json(res)
+  return c.json(replaceBigInts(res, (v) => String(v)))
 })
