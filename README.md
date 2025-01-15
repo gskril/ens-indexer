@@ -37,6 +37,26 @@ Get all names owned by an address:
 }
 ```
 
+Get the most recent .eth names registered:
+
+```graphql
+{
+  names(
+    where: {
+      parentId: "0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae" # namehash('eth')
+    }
+    orderBy: "createdAt"
+    orderDirection: "desc"
+  ) {
+    items {
+      id
+      name
+      createdAt
+    }
+  }
+}
+```
+
 Get all subnames of a given node:
 
 ```graphql
