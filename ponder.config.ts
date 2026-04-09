@@ -5,6 +5,7 @@ import { loadBalance } from '@ponder/utils'
 import { RegistryAbi } from './abis/RegistryAbi'
 import { RegistrarControllerV1Abi } from './abis/RegistrarControllerV1Abi'
 import { RegistrarControllerV2Abi } from './abis/RegistrarControllerV2Abi'
+import { RegistrarControllerV3Abi } from './abis/RegistrarControllerV3Abi'
 import { NameWrapperAbi } from './abis/NameWrapperAbi'
 import { BaseRegistrarAbi } from './abis/BaseRegistrarAbi'
 
@@ -45,6 +46,12 @@ export default createConfig({
       address: '0x253553366Da8546fC250F225fe3d25d0C782303b',
       chain: 'mainnet',
       startBlock: 16925618,
+    },
+    RegistrarControllerV3: {
+      abi: RegistrarControllerV3Abi,
+      address: '0x59E16fcCd424Cc24e280Be16E11Bcd56fb0CE547',
+      chain: 'mainnet',
+      startBlock: 22764821,
     },
     NameWrapper: {
       abi: NameWrapperAbi,
