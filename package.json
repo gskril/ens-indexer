@@ -24,7 +24,9 @@
     "eslint-config-ponder": "^0.16.6",
     "typescript": "^5.4.5"
   },
+  "packageManager": "pnpm@10.15.1",
   "engines": {
-    "node": ">=18.14"
+    "node": ">=22.14",
+    "pnpm": ">=10.15.1"
   }
 }
