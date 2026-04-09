@@ -1,6 +1,4 @@
 import { createConfig } from 'ponder'
-import { http } from 'viem'
-import { loadBalance } from '@ponder/utils'
 
 import { RegistryAbi } from './abis/RegistryAbi'
 import { RegistrarControllerV1Abi } from './abis/RegistrarControllerV1Abi'
@@ -13,13 +11,7 @@ export default createConfig({
   chains: {
     mainnet: {
       id: 1,
-      rpc: loadBalance([
-        http(process.env.PONDER_RPC_URL_1),
-        http(process.env.PONDER_RPC_URL_2),
-        http(process.env.PONDER_RPC_URL_3),
-      ]),
-      maxRequestsPerSecond: 150,
-      pollingInterval: 10_000,
+      rpc: process.env.PONDER_RPC_URL,
     },
   },
   contracts: {
