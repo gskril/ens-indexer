@@ -1,18 +1,25 @@
-import { onchainTable, relations } from 'ponder'
+import { index, onchainTable, relations } from 'ponder'
 
-export const name = onchainTable('name', (t) => ({
-  id: t.hex().primaryKey(), // namehash
-  parentId: t.hex(),
-  labelhash: t.hex(),
-  label: t.text(),
-  name: t.text(),
-  owner: t.hex(),
-  wrappedOwner: t.hex(),
-  fuses: t.integer(),
-  resolver: t.hex(),
-  expiresAt: t.bigint(),
-  createdAt: t.bigint().notNull(),
-}))
+export const name = onchainTable(
+  'name',
+  (t) => ({
+    id: t.hex().primaryKey(), // namehash
+    parentId: t.hex(),
+    labelhash: t.hex(),
+    label: t.text(),
+    name: t.text(),
+    owner: t.hex(),
+    wrappedOwner: t.hex(),
+    fuses: t.integer(),
+    resolver: t.hex(),
+    expiresAt: t.bigint(),
+    createdAt: t.bigint().notNull(),
+  }),
+  (table) => ({
+    ownerIdx: index().on(table.owner),
+    wrappedOwnerIdx: index().on(table.wrappedOwner),
+  }),
+)
 
 export const nameRelations = relations(name, ({ one }) => ({
   parent: one(name, {
