@@ -1,12 +1,17 @@
+import { db } from 'ponder:api'
+import schema from 'ponder:schema'
+import { Hono } from 'hono'
 import { graphql, replaceBigInts } from 'ponder'
 import { Hex } from 'viem'
-import { ponder } from 'ponder:registry'
 
-ponder.use('/', graphql())
+const app = new Hono()
 
-ponder.get('/name/:name', async (c) => {
+app.use('/', graphql({ db, schema }))
+app.use('/graphql', graphql({ db, schema }))
+
+app.get('/name/:name', async (c) => {
   const _name = c.req.param('name')
-  const res = await c.db.query.name.findFirst({
+  const res = await db.query.name.findFirst({
     where: (name, { eq }) => eq(name.name, _name),
     with: { parent: true },
   })
@@ -18,9 +23,9 @@ ponder.get('/name/:name', async (c) => {
   return c.json(replaceBigInts(res, (v) => String(v)))
 })
 
-ponder.get('/node/:node', async (c) => {
+app.get('/node/:node', async (c) => {
   const node = c.req.param('node') as Hex
-  const res = await c.db.query.name.findFirst({
+  const res = await db.query.name.findFirst({
     where: (name, { eq }) => eq(name.id, node),
     with: { parent: true },
   })
@@ -31,3 +36,5 @@ ponder.get('/node/:node', async (c) => {
 
   return c.json(replaceBigInts(res, (v) => String(v)))
 })
+
+export default app

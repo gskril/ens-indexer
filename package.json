@@ -11,9 +11,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@ponder/utils": "^0.2.2",
+    "@ponder/utils": "^0.2.18",
     "hono": "^4.6.11",
-    "ponder": "^0.8.21",
+    "ponder": "^0.16.6",
     "viem": "^2.21.48"
   },
   "devDependencies": {
@@ -21,7 +21,7 @@
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
     "eslint": "^8.57.0",
-    "eslint-config-ponder": "^0.4.35",
+    "eslint-config-ponder": "^0.16.6",
     "typescript": "^5.4.5"
   },
   "engines": {
